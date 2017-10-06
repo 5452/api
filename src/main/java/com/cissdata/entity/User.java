@@ -3,8 +3,10 @@ package com.cissdata.entity;
 import com.alibaba.fastjson.JSON;
 import com.cissdata.base.BaseEntity;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class User extends BaseEntity {
 
     private String username;
@@ -13,7 +15,8 @@ public class User extends BaseEntity {
 
     private Boolean enabled;
 
-    public User(){}
+    public User() {
+    }
 
     public User(String username, String password, Boolean enabled) {
         this.username = username;
