@@ -2,13 +2,15 @@ package com.cissdata.service.impl;
 
 import com.cissdata.entity.User;
 import com.cissdata.exception.UserNotFoundException;
+import com.cissdata.exception.UserVerifyFailedException;
 import com.cissdata.repository.UserRepository;
 import com.cissdata.service.UserService;
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class UserServiceTest implements UserService {
+@Service
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -19,6 +21,8 @@ public class UserServiceTest implements UserService {
 
         if (user == null)
             throw new UserNotFoundException("username:" + username + ", password:" + password);
-        return null;
+        if(StringUtils.equals(user.getPassword(), password))
+            return user;
+        throw new UserVerifyFailedException("username:" + username + ", password:" + password);
     }
 }

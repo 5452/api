@@ -2,21 +2,19 @@ package com.cissdata.base;
 
 import com.alibaba.fastjson.JSON;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @MappedSuperclass
-@Entity
 public abstract class BaseEntity {
 
     @Id
-    protected Long id;
+    private Long id;
 
-    protected Date createdAt;
+    private Date createdAt;
 
-    protected Date updatedAt;
+    private Date updatedAt;
 
     public BaseEntity() {
     }
